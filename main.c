@@ -10,10 +10,5 @@ int main(){
     glossario** dicionario;
     dicionario= Criar_dicionario(10);
 
-    dicionario[5]=(glossario*)malloc(sizeof(glossario));
-
-    (*dicionario[5]).ingles = (char*)malloc(sizeof(char));
-     (*dicionario[5]).ingles='d';
-//teste 2
     return 0;
 }
