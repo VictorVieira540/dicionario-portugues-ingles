@@ -14,6 +14,6 @@ int main(){
 
     (*dicionario[5]).ingles = (char*)malloc(sizeof(char));
      (*dicionario[5]).ingles='d';
-
+//teste
     return 0;
 }
