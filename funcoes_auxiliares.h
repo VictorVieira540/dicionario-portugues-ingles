@@ -1,3 +1,4 @@
+//AUXILIARES DA TABELA
 //Gerador de hashes
 unsigned long hash(const char *str) {
     unsigned long hash = 5381;  // Valor inicial
@@ -10,8 +11,28 @@ unsigned long hash(const char *str) {
 
     return hash;
 }
+//pecorrer a lista e insere um novo no no final
+void new_node(glossary* lista, glossary* novo_no){
+    glossary* atual=lista;
+    while(atual->prox!=NULL){
+            atual= atual->prox;
+    }
+    atual->prox=novo_no;
+}
 
+//desalocar uma traducao existente
+void delete_translate(glossary* item) {
+    if (item != NULL) {
+        free(item->portugues);
+        free(item->ingles);
+        free(item);
+    }
+}
+
+// usada em testes de verificaçao
 void alerta(const char* message){
     printf("%s \n",message);
     system("pause");
 }
+
+

@@ -14,10 +14,11 @@ glossary** new_dictionary(int tamanho){
     }
 }
 
+//criar novo nó de traduçao
 glossary* new_translate(const char* portugues, const char* ingles) {
 
     if (portugues == NULL || ingles == NULL) {
-        alerta("Um dos parametros e nulo");
+        alerta("Erro de parametro");
         return NULL;
     }
 
@@ -34,3 +35,24 @@ glossary* new_translate(const char* portugues, const char* ingles) {
 
     return nova_traducao;
 }
+
+//inserir nova traducao na tabela
+int add_glossary(const glossary* translate, glossary*** d, const int tipo_de_traducao, const int dicionario_t){
+    if(translate==NULL||d==NULL){
+        alerta("Erro de parametro");
+        return 1;
+    }
+    //variaveis a serem usadas
+    glossary** dicionario=*d;//usada para facilitar a implementaçao
+    unsigned long chave=(tipo_de_traducao==1)?hash(translate->portugues)%dicionario_t:hash(translate->ingles)%dicionario_t;//1:portugues, 0:ingles
+
+    //gerenciar a lista no indice de dicionario[chave]
+    if(dicionario[chave]!=NULL){
+            new_node(dicionario[chave],translate);
+    }else{
+        dicionario[chave]=translate;
+    }
+    return 0;
+}
+
+
