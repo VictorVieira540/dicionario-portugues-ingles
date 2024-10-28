@@ -10,3 +10,8 @@ unsigned long hash(const char *str) {
 
     return hash;
 }
+
+void alerta(const char* message){
+    printf("%s \n",message);
+    system("pause");
+}

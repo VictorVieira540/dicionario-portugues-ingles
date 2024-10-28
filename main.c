@@ -7,8 +7,13 @@
 
 
 int main(){
-    glossario** dicionario;
-    dicionario= Criar_dicionario(10);
+    glossary** dicionario=NULL;
 
+
+    //area de teste
+    dicionario= new_dictionary(10);
+    dicionario[0]=new_translate("gato","cat");
+    printf("%s",(*dicionario[0]).portugues);
     return 0;
+
 }

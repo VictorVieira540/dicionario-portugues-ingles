@@ -1,6 +1,7 @@
-typedef struct glossario{
+typedef struct glossary{
     char* portugues;
     char* ingles;
-    struct glossario* prox;
-}glossario;
+    struct glossary* prox;
+}glossary;
 
+void alerta(const char*);
