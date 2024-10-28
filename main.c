@@ -8,24 +8,21 @@
 #include "database.h"
 
 
-
 int main(){
-    int dicionario_size=10;
+    int dicionario_size=tamanho_incial;
     glossary** dicionario=NULL;
 
     //area de teste
     //
     dicionario= new_dictionary(dicionario_size);
-    glossary* nova_traducao= new_translate("carro","car");//indice 6
+    glossary* nova_traducao=new_translate("carro","car");
+    add_glossary(nova_traducao,dicionario,1,dicionario_size);
 
-    add_glossary(nova_traducao,&dicionario,1,dicionario_size);
-
-    printf("%s  ::  ",(*dicionario[6]).portugues);
-    printf("%s",(*dicionario[6]).ingles);
-
+  imprimir(search_no(&dicionario,"carro",dicionario_size,1));
     //final do teste
 
-    delete_translate(nova_traducao);
+    delete_no(nova_traducao);
+
     free(dicionario);
     return 0;
 

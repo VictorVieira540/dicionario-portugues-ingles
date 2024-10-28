@@ -1,6 +1,6 @@
 #ifndef HEAD_H // Verifica se HEAD_H não foi definido
 #define HEAD_H // Define HEAD_H
-
+#define tamanho_incial 5
 
 typedef struct glossary {
     char* portugues;
