@@ -1,6 +1,11 @@
 
 //funcao para criar uma nova tabela
 glossary** new_dictionary(int tamanho){
+        if(tamanho==0){
+        alerta("dicionario nao pode ter o tamanho 0");
+        return NULL;
+    }
+    //////////////////////////////////////////////////////////////
     glossary** novo= (glossary**)malloc(sizeof(glossary*)*tamanho);
 
     if(novo==NULL){
@@ -15,13 +20,13 @@ glossary** new_dictionary(int tamanho){
 }
 
 //criar novo nó de traduçao
-glossary* new_translate(const char* portugues, const char* ingles) {
+glossary* new_translate(char* portugues,char* ingles) {
 
     if (portugues == NULL || ingles == NULL) {
         alerta("Erro de parametro");
         return NULL;
     }
-
+    /////////////////////////////////////////////////////////////
     glossary* nova_traducao = (glossary*)malloc(sizeof(glossary));
 
     if (nova_traducao == NULL) {
@@ -29,16 +34,20 @@ glossary* new_translate(const char* portugues, const char* ingles) {
         return NULL;
     }
 
-    nova_traducao->portugues = strdup(portugues);
-    nova_traducao->ingles = strdup(ingles);
+    nova_traducao->portugues = portugues;
+    nova_traducao->ingles = ingles;
     nova_traducao->prox = NULL;
 
     return nova_traducao;
 }
 
 //inserir nova traducao na tabela
-int add_glossary(const glossary* translate, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t){
-    if(translate==NULL||dicionario==NULL){
+int add_glossary(const glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t){
+    if(dicionario_t==0){
+        alerta("dicionario nao pode ter o tamanho 0");
+        return 1;
+    }
+    if(novo_par==NULL||dicionario==NULL){
         alerta("Erro de parametro");
         return 1;
     }
@@ -46,22 +55,27 @@ int add_glossary(const glossary* translate, glossary** dicionario, const int tip
     //glossary** dicionario=*d;//usada para facilitar a implementaçao
     unsigned long chave=
     (tipo_de_traducao==1)?
-        hash(translate->portugues)%dicionario_t:
-        hash(translate->ingles)%dicionario_t;//1:portugues, 0:ingles
+        hash(novo_par->portugues)%dicionario_t:
+        hash(novo_par->ingles)%dicionario_t;//1:portugues, 0:ingles
 
     //gerenciar a lista no indice de dicionario[chave]
     if(dicionario[chave]!=NULL){
-            new_node(dicionario[chave],translate);
+            new_node(dicionario[chave],novo_par);
     }else{
-        dicionario[chave]=translate;
+        dicionario[chave]=novo_par;
     }
     return 0;
 }
 
 glossary* search_no(glossary*** dicionario, const char* world, const int d_size, const int tipo ){
+
     //verificaçoes
     if(*dicionario==NULL || world == NULL){
         alerta("Erro ao buscar o no!");
+        return NULL;
+    }
+    if(d_size==0){
+        alerta("dicionario nao pode ter o tamanho 0");
         return NULL;
     }
     //variaveis
@@ -73,6 +87,7 @@ glossary* search_no(glossary*** dicionario, const char* world, const int d_size,
 
     //o tipo vai definir a busca
     //O while vai mover o ponteiro ate encontrar o no com a palavra correspondente, caso não encontre 'atual' sera nulo
+    ////////////////////////////////////////////////////////
    if(tipo==1){
     while(atual!=NULL && strcmp(world,atual->portugues)!=0){
           anterior_do_anterior=anterior;
@@ -102,3 +117,21 @@ glossary* search_no(glossary*** dicionario, const char* world, const int d_size,
     }
 }
 
+int delete_dictionary(glossary** dicionario, int tamanho){
+    //verificaçoes
+    if(tamanho==0){
+        alerta("dicionario nao pode ter o tamanho 0");
+        return 1;
+    }
+    if(dicionario==NULL){
+            alerta("erro de parametro");
+            return 1;
+    }
+    //////////////////////////////////////////////////////
+    for(int x=0;x<tamanho;x++){
+        if(dicionario[x]!=NULL)delete_lista(dicionario[x]);
+    }
+    free(dicionario);
+
+    return 0;
+}

@@ -37,6 +37,14 @@ void replace_no(glossary** anterior_do_ant, glossary** atual){
     (*anterior_do_ant)->prox=*atual;
 }
 
+void delete_lista(glossary* lista){
+    glossary *atual=lista, *aux=NULL;
+    while(atual!=NULL){
+        aux=atual;
+        atual=atual->prox;
+        free(aux);
+    }
+}
 
 // usada em testes de verificaçao
 
