@@ -1,4 +1,17 @@
 //SENDO IMPLEMENTADO
+int counter_data(FILE* data){
+    glossary* aux = carregar_no(data);
+    int contador=0;
+
+    if(sscanf(aux->ingles,"%d",&contador)==1){
+            delete_no(aux);
+            return contador;
+    }else{
+        alerta("arquivo comrropido Fx000");
+        delete_no(aux);
+        return -1;
+    }
+}
 
 glossary* carregar_no(FILE* data){
     char buffer[256];
@@ -6,7 +19,7 @@ glossary* carregar_no(FILE* data){
     char *ingles=NULL;
 
     if(fgets(buffer,sizeof(buffer),data)==NULL){
-        alerta("Erro de leitura do arquivo");
+        alerta("Erro de leitura do arquivo Fx001");
         return NULL;
         }
 
@@ -14,14 +27,14 @@ glossary* carregar_no(FILE* data){
 
         extract_word(buffer,&portugues,&ingles);
         if(portugues==NULL || ingles==NULL){
-            alerta("erro na leitura");
+            alerta("erro na leitura Fx002");
             return NULL;
         }
         glossary* novo=new_translate(portugues,ingles);
         return novo;
 }
 
-void extract_word(const char *buffer, char **portugues, char **ingles) {
+void extract_word(const char *buffer, char **portugues, char **ingles){
     int i = 0, j = 0;
 
     // Encontrar a posição do ':' para separar as palavras

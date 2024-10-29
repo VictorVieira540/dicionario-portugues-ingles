@@ -57,7 +57,7 @@ void alerta(const char* message){
 //testes
 void imprimir(glossary* item){
     if(item!=NULL){
-        printf("%s  ::  %s",item->portugues,item->ingles);
+        printf("\n%s  ::  %s\n",item->portugues,item->ingles);
     }else{
         printf("Traducao nao consta no banco de dados!");
     }

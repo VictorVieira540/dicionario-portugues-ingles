@@ -2,14 +2,14 @@
 //funcao para criar uma nova tabela
 glossary** new_dictionary(int tamanho){
         if(tamanho==0){
-        alerta("dicionario nao pode ter o tamanho 0");
+        alerta("dicionario nao pode ter o tamanho 0 Tx000");
         return NULL;
     }
     //////////////////////////////////////////////////////////////
     glossary** novo= (glossary**)malloc(sizeof(glossary*)*tamanho);
 
     if(novo==NULL){
-        alerta("Ocorreu um erro ao criar o dicionario");
+        alerta("Ocorreu um erro ao criar o dicionario Tx001");
         return NULL;
     }else{
         for(int x=0;x<tamanho;x++){//loop para limpar o lixo das variaveis das estruturas
@@ -23,14 +23,14 @@ glossary** new_dictionary(int tamanho){
 glossary* new_translate(char* portugues,char* ingles) {
 
     if (portugues == NULL || ingles == NULL) {
-        alerta("Erro de parametro");
+        alerta("Erro de parametro Tx002");
         return NULL;
     }
     /////////////////////////////////////////////////////////////
     glossary* nova_traducao = (glossary*)malloc(sizeof(glossary));
 
     if (nova_traducao == NULL) {
-        alerta("Erro ao alocar memoria para nova traducao");
+        alerta("Erro ao alocar memoria para nova traducao Tx003");
         return NULL;
     }
 
@@ -44,11 +44,11 @@ glossary* new_translate(char* portugues,char* ingles) {
 //inserir nova traducao na tabela
 int add_glossary(const glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t){
     if(dicionario_t==0){
-        alerta("dicionario nao pode ter o tamanho 0");
+        alerta("dicionario nao pode ter o tamanho 0 Tx004");
         return 1;
     }
     if(novo_par==NULL||dicionario==NULL){
-        alerta("Erro de parametro");
+        alerta("Erro de parametro Tx005");
         return 1;
     }
     //variaveis a serem usadas
@@ -71,11 +71,11 @@ glossary* search_no(glossary*** dicionario, const char* world, const int d_size,
 
     //verificaçoes
     if(*dicionario==NULL || world == NULL){
-        alerta("Erro ao buscar o no!");
+        alerta("Erro ao buscar o no Tx006");
         return NULL;
     }
     if(d_size==0){
-        alerta("dicionario nao pode ter o tamanho 0");
+        alerta("dicionario nao pode ter o tamanho 0 Tx007");
         return NULL;
     }
     //variaveis
@@ -120,11 +120,11 @@ glossary* search_no(glossary*** dicionario, const char* world, const int d_size,
 int delete_dictionary(glossary** dicionario, int tamanho){
     //verificaçoes
     if(tamanho==0){
-        alerta("dicionario nao pode ter o tamanho 0");
+        alerta("dicionario nao pode ter o tamanho 0 Tx008");
         return 1;
     }
     if(dicionario==NULL){
-            alerta("erro de parametro");
+            alerta("erro de parametro Tx009");
             return 1;
     }
     //////////////////////////////////////////////////////
@@ -134,4 +134,19 @@ int delete_dictionary(glossary** dicionario, int tamanho){
     free(dicionario);
 
     return 0;
+}
+
+void load_database(glossary** dicionario, int d_size, int tipo){
+
+    FILE *arquivo = fopen(data_path,"r");
+    if(arquivo==NULL){
+        alerta("Erro no carregamento do arquivo Tx010");
+    }
+    int qtd_elementos=counter_data(arquivo);//conta quantos elementos existem no arquivo
+    if(qtd_elementos==-1)return;
+    for(int x=0; x<qtd_elementos;x++){
+        glossary* novo= carregar_no(arquivo);
+        add_glossary(novo,dicionario,tipo,d_size);
+    }
+    fclose(arquivo);
 }

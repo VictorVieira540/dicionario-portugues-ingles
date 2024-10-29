@@ -6,22 +6,19 @@
 #include "funcoes_auxiliares.h"
 #include "tabela.h"
 #include "database.h"
-
+// 529 elementos
 
 int main(){
-
-    FILE* arquivo = fopen(data_path,"r");
+    int tipo=0;
+    glossary **dicionario= new_dictionary(tamanho_padrao);
 
     //area de teste
-    for(int x=0;x<5;x++)carregar_no(arquivo);
+    load_database(dicionario,tamanho_padrao,tipo);
 
-    glossary* novo_no= carregar_no(arquivo);
-
-    printf("%s",novo_no->portugues);
+    glossary* busca= search_no(&dicionario,"develop",tamanho_padrao,tipo);
+    imprimir(busca);
     //final do teste
-
-
-    delete_no(novo_no);
+    delete_dictionary(dicionario,tamanho_padrao);
     return 0;
 
 }
