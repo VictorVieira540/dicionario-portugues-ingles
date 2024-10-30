@@ -42,7 +42,7 @@ glossary* new_translate(char* portugues,char* ingles) {
 }
 
 //inserir nova traducao na tabela
-int add_glossary(const glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t){
+int add_glossary(glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t){
     if(dicionario_t==0){
         alerta("dicionario nao pode ter o tamanho 0 Tx004");
         return 1;
@@ -71,7 +71,7 @@ glossary* search_no(glossary*** dicionario, const char* world, const int d_size,
 
     //verificaçoes
     if(*dicionario==NULL || world == NULL){
-        alerta("Erro ao buscar o no Tx006");
+        alerta("Erro de parametro Tx006");
         return NULL;
     }
     if(d_size==0){
@@ -141,6 +141,7 @@ void load_database(glossary** dicionario, int d_size, int tipo){
     FILE *arquivo = fopen(data_path,"r");
     if(arquivo==NULL){
         alerta("Erro no carregamento do arquivo Tx010");
+        return;
     }
     int qtd_elementos=counter_data(arquivo);//conta quantos elementos existem no arquivo
     if(qtd_elementos==-1)return;

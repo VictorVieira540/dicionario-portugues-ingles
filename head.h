@@ -14,9 +14,14 @@ typedef struct glossary {
 glossary** new_dictionary(int tamanho);//CRIA UM DICIONARIO COM "TAMANHO" INDICES
 glossary* search_no(glossary*** dicionario, const char* world, const int d_size, const int tipo);//PROCURA UM NO NO DICIONARIO E REOGARNIZA A LISTA USANDO TRASPONSICAO
 glossary* new_translate(char* portugues,char* ingles);//CRIAR NOVO NO COM AS PALAVRAS
-int add_glossary(const glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t);//ADICIONA UM NO COM A TRADUCAO AO DICIONARIO
+int add_glossary( glossary* novo_par, glossary** dicionario, const int tipo_de_traducao, const int dicionario_t);//ADICIONA UM NO COM A TRADUCAO AO DICIONARIO
 void alerta(const char* message);//USADA NAS VERIFICACOES DE ERRO
+int delete_dictionary(glossary** dicionario, int tamanho);//DESALOCA UM DICIONARIO
 //FUNCOES DO ARQUIVO
 glossary* carregar_no(FILE* data);
-int delete_dictionary(glossary** dicionario, int tamanho);//DESALOCA UM DICIONARIO
+int counter_data(FILE* data); // Prototipo para counter_data
+void extract_word(const char* buffer,char** portugues, char** ingles);
+
+//INTERFACE
+void open_dictionary(glossary** dicionario);
 #endif

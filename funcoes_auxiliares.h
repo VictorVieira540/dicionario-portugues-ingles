@@ -14,7 +14,7 @@ unsigned long hash(const char *str) {
 
 ////LISTAS
 //pecorrer a lista e insere um novo no no final
-void new_node(glossary* lista, glossary* novo_no){
+void new_node( glossary* lista, glossary* novo_no){
     glossary* atual=lista;
     while(atual->prox!=NULL){
             atual= atual->prox;
@@ -44,6 +44,16 @@ void delete_lista(glossary* lista){
         atual=atual->prox;
         free(aux);
     }
+}
+
+void limparTela() {
+    #if defined(_WIN32) || defined(_WIN64)
+        system("cls");
+    #elif defined(__linux__) || defined(__APPLE__)
+        system("clear");
+    #else
+        printf("Nao foi possivel limpar a tela neste sistema.\n");
+    #endif
 }
 
 // usada em testes de verificaçao
