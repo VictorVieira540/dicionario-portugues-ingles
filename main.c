@@ -32,11 +32,11 @@ void menu(glossary*** dicionario){
             break;
         case 2:
             printf("Traduzindo frases...\n");
-            // Chame a função correspondente aqui
+            // Chame a funÃ§Ã£o correspondente aqui
             break;
         case 3:
             printf("Listando traducoes cadastradas...\n");
-            // Chame a função correspondente aqui
+            // Chame a funÃ§Ã£o correspondente aqui
             break;
         case 4:
             delete_dictionary(*dicionario,tamanho_padrao);
@@ -67,22 +67,17 @@ void open_dictionary(glossary** dicionario) {
     do {
         limparTela();
         printf("Qual tipo de traducao voce deseja:\n1 - Portugues para ingles\n2 - Ingles para portugues\n");
-        // Verificando a leitura do scanf
-        while (scanf("%d", &tipo) != 1 || (tipo != 1 && tipo != 2)) {
-            printf("Entrada invalida. Por favor, insira 1 ou 2:\n");
-            while (getchar() != '\n'); // Limpa o buffer
-        }
-        while (getchar() != '\n'); // Limpa o buffer apos scanf
+        scanf("%d", &tipo) != 1 || (tipo != 1 && tipo != 2)) {
     } while (tipo != 1 && tipo != 2);
 
-    // Loop para inserir palavras e buscar traducoes
+ 
     do {
         limparTela();
         printf("Insira a palavra: ");
         getchar();
         fgets(buffer, sizeof(buffer), stdin);
-        // Remove a nova linha, se presente
-        buffer[strcspn(buffer, "\n")] = '\0'; // Remover o '\n' do buffer
+  
+        buffer[strcspn(buffer, "\n")] = '\0'; 
 
         glossary* no = search_no(&dicionario, buffer, tamanho_padrao, tipo);
 
@@ -97,14 +92,13 @@ void open_dictionary(glossary** dicionario) {
         }
 
 
-        // Opcao para nova traducao
+
         op = 0;
         do {
             printf("Nova traducao? (1 - sim, 2 - nao): ");
             scanf("%d", &op);
         }while (op != 1 && op != 2);
 
-        // Resetando op para 0 para a proxima iteracao
 
     } while (op != 2);
 }
