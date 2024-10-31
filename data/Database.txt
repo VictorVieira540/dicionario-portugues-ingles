@@ -434,4 +434,4 @@ onde:where
 quando:when
 como:how
 por que:why
-que:that
+que:what
