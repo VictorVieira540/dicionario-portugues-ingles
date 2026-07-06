@@ -1,47 +1,47 @@
-# Dicionário Português-Inglês
+# Portuguese-English Dictionary
 
-Dicionário bilíngue em C desenvolvido como projeto da disciplina de **Estrutura de Dados**. Implementa busca, tradução de frases e gerenciamento de verbetes usando **tabela hash com listas encadeadas** e **algoritmo de transposição** para otimização de consultas frequentes.
+A bilingual dictionary in C developed as a project for the **Data Structures** course at UFV CRP. Implements word lookup, sentence translation, and entry management using a **hash table with linked lists** and a **transposition algorithm** (move-to-front) to optimize frequent queries.
 
-## Funcionalidades
+## Features
 
-- **Busca de palavras** — consulta português → inglês ou inglês → português
-- **Tradução de frases** — traduz palavra por palavra, mantendo pontuação e palavras não encontradas
-- **Listagem de verbetes** — exibe todo o dicionário paginado (20 itens por página)
-- **Carregamento automático** — lê a base de palavras de um arquivo texto na inicialização
-- **Transposição (move-to-front)** — reorganiza a lista encadeada a cada busca, movendo palavras consultadas com frequência para o início da lista
+- **Word lookup** — query Portuguese → English or English → Portuguese
+- **Sentence translation** — translates word by word, preserving punctuation and unknown words
+- **Entry listing** — displays the full dictionary with pagination (20 items per page)
+- **Auto-loading** — reads the word database from a text file on startup
+- **Move-to-front (transposition)** — reorganizes the linked list on each lookup, moving frequently queried words to the front
 
-## Estruturas de Dados
+## Data Structures
 
-| Estrutura | Finalidade |
+| Structure | Purpose |
 |---|---|
-| **Tabela Hash** (5000 índices) | Armazena os vetores de busca — função hash djb2 |
-| **Lista Encadeada** | Trata colisões na tabela hash — cada nó contém par (português, inglês) |
-| **Transposição** | Reorganiza a lista a cada acesso — palavras mais buscadas ficam no início |
+| **Hash Table** (5000 buckets) | Stores search vectors — djb2 hash function |
+| **Linked List** | Handles hash collisions — each node stores a (portuguese, english) pair |
+| **Transposition** | Reorganizes the list on each access — most searched words move to the front |
 
-## Como compilar e executar
+## Build & Run
 
 ```bash
-# Compilar
+# Compile
 gcc -o dicionario main.c -Wall
 
-# Executar
+# Run
 ./dicionario
 ```
 
-O dicionário carrega automaticamente a base de palavras do arquivo `data/Database.txt`.
+The dictionary automatically loads the word database from `data/Database.txt`.
 
 ## Menu
 
 ```
-========== BEM VINDO ==========
-1- Abrir dicionário (buscar palavras)
-2- Traduzir frases
-3- Listar traduções cadastradas
-4- Sair
+========== WELCOME ==========
+1- Open dictionary (search words)
+2- Translate sentences
+3- List registered translations
+4- Exit
 ```
 
 ## Stack
 
-- **Linguagem:** C
-- **Conceitos:** Tabela hash, listas encadeadas, alocação dinâmica, manipulação de arquivos
-- **Disciplina:** Estrutura de Dados — UFV CRP
+- **Language:** C
+- **Concepts:** Hash table, linked lists, dynamic memory allocation, file I/O
+- **Course:** Data Structures — UFV CRP
